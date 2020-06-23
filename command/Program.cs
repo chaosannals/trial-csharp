@@ -42,11 +42,12 @@ namespace Trial.Command
             });
             Console.WriteLine("{0:N0}", one.Result.TotalMilliseconds);
             Console.WriteLine("{0:N0}", two.Result.TotalMilliseconds);
-            foreach(int i in result) {
-                Console.WriteLine("{0:N0}", i);
-            }
+            // foreach(int i in result) {
+            //     Console.WriteLine("{0:N0}", i);
+            // }
             Console.WriteLine("{0:N0}", one.Result.TotalMilliseconds);
             Console.WriteLine("{0:N0}", two.Result.TotalMilliseconds);
+            Console.WriteLine("{0:D}", PortManager.FindUsablePort(9000));
         }
     }
 }
