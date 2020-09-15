@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command", "command\Command.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiPanel", "uipanel\UiPanel.csproj", "{36462762-A81F-4370-B65A-51DF5F3F739C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastCGI", "fastcgi\FastCGI.csproj", "{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{36462762-A81F-4370-B65A-51DF5F3F739C}.Release|x64.Build.0 = Release|Any CPU
 		{36462762-A81F-4370-B65A-51DF5F3F739C}.Release|x86.ActiveCfg = Release|Any CPU
 		{36462762-A81F-4370-B65A-51DF5F3F739C}.Release|x86.Build.0 = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|x64.Build.0 = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|x64.ActiveCfg = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|x64.Build.0 = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{8194B889-9BD4-4DA2-A676-EB24D57DB8FB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
