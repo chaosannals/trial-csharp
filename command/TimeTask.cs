@@ -21,13 +21,12 @@ namespace Trial.Command
                         result.Add(rand.Next());
                         result.Add(i);
                     }
-                    Thread.Yield();
                 }
                 return DateTime.Now.Subtract(start);
             });
         }
 
-        public async void Test() {
+        public async Task Test() {
             result = new List<int>();
             var one = await Full(1000);
             var two = await Full(10000);
