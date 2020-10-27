@@ -15,12 +15,12 @@ namespace Trial.Command
             Ip = ip ?? IPAddress.Parse("0:0:0:0");
         }
 
-        public void Listen()
+        public async void Listen()
         {
             TcpListener listener = new TcpListener(Ip, Port);
             while (true)
             {
-                Task<TcpClient> task = listener.AcceptTcpClientAsync();
+                TcpClient client = await listener.AcceptTcpClientAsync();
             }
         }
     }
