@@ -25,6 +25,7 @@ namespace PHP
             FastCGIParser tfcp = new FastCGIParser();
             while (true)
             {
+                // 请求信息可用，传递请求信息。
                 if (requester.DataAvailable)
                 {
                     int count = requester.Read(buffer, 0, buffer.Length);
@@ -37,6 +38,8 @@ namespace PHP
                         yield return m;
                     }
                 }
+
+                // 响应信息可用，传递响应信息。
                 if (responser.DataAvailable)
                 {
                     int count = responser.Read(buffer, 0, buffer.Length);
@@ -49,6 +52,8 @@ namespace PHP
                         yield return m;
                     }
                 }
+
+                // 无信息。
                 yield return null;
             }
         }
