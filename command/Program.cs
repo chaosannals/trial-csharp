@@ -17,6 +17,13 @@ namespace Trial.Command
             TcpRequester requester = new TcpRequester(IPAddress.Parse("127.0.0.1"), 12300);
             Console.WriteLine(requester.Send("Hello").Result);
             Console.WriteLine(requester.Send("Hello World").Result);
+            for (int i = 0; i <= 100; ++i)
+            {
+                Console.Write(i);
+                Console.Write(" => ");
+                Console.WriteLine(requester.Send("Hello World Net Test").Result);
+                Thread.Sleep(1000 + i);
+            }
         }
     }
 }

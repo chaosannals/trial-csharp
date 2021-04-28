@@ -15,7 +15,7 @@ namespace Trial.Command
         public TcpResponser(int port, IPAddress ip = null)
         {
             Port = port;
-            Ip = ip ?? IPAddress.Parse("0.0.0.0");
+            Ip = ip ?? IPAddress.Any;
         }
 
         public async void Listen()
