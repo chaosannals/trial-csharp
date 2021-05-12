@@ -12,7 +12,8 @@ namespace Spider
         static void Main(string[] args)
         {
             // Downloader.Download();
-            Generator.DoTest();
+            // Generator.DoTest();
+            IpAddressInfo.GetIps();
         }
     }
 }
