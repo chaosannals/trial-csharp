@@ -21,6 +21,8 @@ namespace Crypt
             var d = Aes256.Decrypt<TestData>(key, e);
             Console.WriteLine(d.a);
             Console.WriteLine(d.b);
+            string md5 = MD5File.Make("Program.cs");
+            Console.WriteLine(md5);
         }
     }
 }
