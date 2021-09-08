@@ -8,7 +8,8 @@ namespace Lambda
     {
         static void Main(string[] args)
         {
-            SimpleDemo.SimpleRun();
+            //SimpleDemo.SimpleRun();
+            VisitDemo.VisitRun();
         }
     }
 }
