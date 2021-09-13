@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resp", "Resp\Resp.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda", "Lambda\Lambda.csproj", "{EE7CF4D9-139A-49C5-B40A-189A9D604BB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaCore", "LambdaCore\LambdaCore.csproj", "{B0833BB5-EE74-47A5-91F7-9FB5A1E26DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaCore", "LambdaCore\LambdaCore.csproj", "{B0833BB5-EE74-47A5-91F7-9FB5A1E26DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexBin", "HexBin\HexBin.csproj", "{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,18 @@ Global
 		{B0833BB5-EE74-47A5-91F7-9FB5A1E26DB9}.Release|x64.Build.0 = Release|Any CPU
 		{B0833BB5-EE74-47A5-91F7-9FB5A1E26DB9}.Release|x86.ActiveCfg = Release|Any CPU
 		{B0833BB5-EE74-47A5-91F7-9FB5A1E26DB9}.Release|x86.Build.0 = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|x64.Build.0 = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|x64.Build.0 = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2AE34B1-380C-4F2C-B090-78FB6C66E0B9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
