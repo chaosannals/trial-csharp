@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.CrystalReports.TemplateEngine;
 
 namespace CrystalUi
 {
@@ -31,14 +32,18 @@ namespace CrystalUi
         {
             if (report == null)
             {
+
                 report = new ReportDocument();
+
+                //var a = new ReportTemplateEngine();
+                
                 
                 // report.Load("");
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
-                dt.Rows.Add("第一行");
-                ds.Tables.Add(dt);
-                report.SetDataSource(ds);
+                //DataSet ds = new DataSet();
+                //DataTable dt = new DataTable();
+                //dt.Rows.Add("第一行");
+                //ds.Tables.Add(dt);
+                //report.SetDataSource(ds);
             }
             
         }
