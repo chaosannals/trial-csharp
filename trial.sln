@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "worker\Worker.csproj", "{0E707702-0D28-49B0-82E5-7F75E58DFA28}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CLRWrapper", "CLRWrapper\CLRWrapper.vcxproj", "{DC78BC65-7DC2-4EB3-899E-844E5E12BF1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLRUser", "CLRUser\CLRUser.csproj", "{755273C2-CE75-427C-805C-51BAC78FC49B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILMaker", "ILMaker\ILMaker.csproj", "{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,18 @@ Global
 		{755273C2-CE75-427C-805C-51BAC78FC49B}.Release|x64.Build.0 = Release|Any CPU
 		{755273C2-CE75-427C-805C-51BAC78FC49B}.Release|x86.ActiveCfg = Release|Any CPU
 		{755273C2-CE75-427C-805C-51BAC78FC49B}.Release|x86.Build.0 = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|x64.Build.0 = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F21FD52-5D5F-47FB-94F1-6E1BC3C157FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
