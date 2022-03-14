@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelDemo": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Path\\To\\ProjectDir"
+    }
+  }
+}
