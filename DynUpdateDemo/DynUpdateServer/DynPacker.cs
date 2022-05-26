@@ -59,7 +59,9 @@ namespace DynUpdateServer
             });
             m.Merge();
 
-            return File.ReadAllBytes(target);
+            byte[] result = File.ReadAllBytes(target);
+            // File.Delete(target);
+            return result;
         }
 
         public byte[] Pack(string key, byte[] data)

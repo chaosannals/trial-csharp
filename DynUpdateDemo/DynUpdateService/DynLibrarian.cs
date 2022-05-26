@@ -37,6 +37,7 @@ namespace DynUpdateService
         {
             Assembly dynAssembly = AppDomain.CurrentDomain.Load(codes);
             dynWorker = dynAssembly.CreateInstance(DynWorkerName);
+            Invoke("Init");
             Invoke("Start");
         }
 
