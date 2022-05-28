@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Data.SQLite;
 using log4net;
 using log4net.Repository.Hierarchy;
 using log4net.Core;
 using log4net.Appender;
 using log4net.Layout;
+using DynUpdateLibrary.Core;
 
 namespace DynUpdateLibrary
 {
@@ -50,7 +52,20 @@ namespace DynUpdateLibrary
 
         public void Start()
         {
-            log.InfoFormat("Start {0}   {1}", AppDomain.CurrentDomain.BaseDirectory, root);
+            try
+            {
+                log.InfoFormat("Start {0}   {1}", AppDomain.CurrentDomain.BaseDirectory, root);
+                string dbpath = Path.Combine(root, "sqlite.db");
+                using (SQLiteSession sqlite = new SQLiteSession(dbpath))
+                {
+                    string tn = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    sqlite.Execute($"CREATE TABLE table_{tn} (id  INTEGER PRIMARY KEY AUTOINCREMENT, iii INTEGER,ddd DATE DEFAULT((date('now', 'localtime'))) NOT NULL);");
+                }
+            }
+            catch (Exception e)
+            {
+                log.ErrorFormat("异常： {0} {1}", e.Message, e.StackTrace);
+            }
         }
 
         public void Stop()
