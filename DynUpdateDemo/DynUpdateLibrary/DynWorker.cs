@@ -14,8 +14,11 @@ namespace DynUpdateLibrary
     {
         private ILog log = null;
 
-        public void Init()
+        private string root = null;
+
+        public void Init(string root)
         {
+            this.root = root;
             string logpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dyn.log");
 
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
@@ -47,7 +50,7 @@ namespace DynUpdateLibrary
 
         public void Start()
         {
-            log.Info("Start");
+            log.InfoFormat("Start {0}   {1}", AppDomain.CurrentDomain.BaseDirectory, root);
         }
 
         public void Stop()

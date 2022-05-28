@@ -38,8 +38,9 @@ namespace DynUpdateService
                             var lib = DynLibrarian.NewInstance(dm);
                             "NewInstance".Log();
                             PrintAssembly();
-                            lib.Start(data);
-                            "Start".Log();
+                            string root = AppDomain.CurrentDomain.BaseDirectory;
+                            lib.Start(data, root);
+                            "Start (root: {0})".Log(root);
                             PrintAssembly();
                             lib.Stop();
                             AppDomain.Unload(dm);

@@ -21,7 +21,6 @@ namespace DynUpdateService
 
         public static DynLibrarian NewInstance(AppDomain dynDomain)
         {
-            Debug.WriteLine("NewInstance ========");
             return dynDomain.CreateInstanceAndUnwrap(
                 typeof(DynLibrarian).Assembly.FullName,
                 typeof(DynLibrarian).FullName
@@ -33,11 +32,13 @@ namespace DynUpdateService
         /// 与主上下文不一致，日志等全局配置失效。
         /// </summary>
         /// <param name="codes"></param>
-        public void Start(byte[] codes)
+        public void Start(byte[] codes, string root)
         {
+            DynLogger.Init(".s.log", root);
+            "DynLibrarian.Start".Log();
             Assembly dynAssembly = AppDomain.CurrentDomain.Load(codes);
             dynWorker = dynAssembly.CreateInstance(DynWorkerName);
-            Invoke("Init");
+            Invoke("Init", root);
             Invoke("Start");
         }
 
@@ -49,11 +50,11 @@ namespace DynUpdateService
             Dispose();
         }
 
-        public void Invoke(string action)
+        public void Invoke(string action, params object[] args)
         {
             Type t = dynWorker.GetType();
             MethodInfo mi = t.GetMethod(action);
-            mi.Invoke(dynWorker, null);
+            mi.Invoke(dynWorker, args);
         }
 
         public void Dispose()

@@ -14,10 +14,10 @@ namespace DynUpdateService
         public static string Folder { get; private set; }
         public static string Suffix { get; private set; }
 
-        public static void Init(string suffix=".log")
+        public static void Init(string suffix=".log", string root=null)
         {
             Suffix = suffix;
-            Folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log");
+            Folder = Path.Combine(root ?? AppDomain.CurrentDomain.BaseDirectory, "log");
             if (!Directory.Exists(Folder))
             {
                 Directory.CreateDirectory(Folder);
