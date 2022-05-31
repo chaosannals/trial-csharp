@@ -9,34 +9,32 @@ namespace DynCode
 {
     public class DynInterpreter
     {
-        private AppDomain domain;
-        private AssemblyName aname;
-        private AssemblyBuilder builder;
-        private ModuleBuilder mainModuleBuilder;
-        private TypeBuilder mainTypeBuider;
+        private string name;
+        private AppDomainSetup setup;
 
-        public DynInterpreter()
+        public DynInterpreter(string name = "DynDomain")
         {
-            //domain = AppDomain.CreateDomain("DynDomain", null, new AppDomainSetup {
-            //    ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase
-            //});
-
-            //domain.DoCallBack(() =>
-            //{
-            //    var assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(new AssemblyName("temp"), AssemblyBuilderAccess.Run);
-            //    var module = assembly.DefineDynamicModule("DynModule");
-            //    var typeBuilder = module.DefineType("MyTempClass", TypeAttributes.Public | TypeAttributes.Serializable);
-            //});
-            domain = AppDomain.CurrentDomain;
-            aname = new AssemblyName("DynAssembly");
-            builder = domain.DefineDynamicAssembly(aname, AssemblyBuilderAccess.RunAndSave);
-            mainModuleBuilder = builder.DefineDynamicModule("Dyn");
-            mainTypeBuider = mainModuleBuilder.DefineType("DynMain");
+            setup = new AppDomainSetup
+            {
+                ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase
+            };
         }
 
-        public void Interpret()
+        public void Interpret(DynAstNodeRoot root)
         {
-
+            AppDomain domain = AppDomain.CreateDomain(name, null, setup);
+            try
+            {
+                DynMachine machine = domain.CreateInstanceAndUnwrap(
+                    typeof(DynMachine).Assembly.FullName,
+                    typeof(DynMachine).FullName
+                ) as DynMachine;
+                root.Effect(machine);
+            }
+            finally
+            {
+                AppDomain.Unload(domain);
+            }
         }
     }
 }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynMachine.cs" />
     <Compile Include="IDynAstNode.cs" />
     <Compile Include="DynAstNodeBlock.cs" />
     <Compile Include="DynAstNodeExpression.cs" />

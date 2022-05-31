@@ -9,6 +9,14 @@ namespace DynCode
     {
         public List<IDynAstNode> Statements { get; set; }
 
+        public void Effect(DynMachine machine)
+        {
+            foreach(var s in Statements)
+            {
+                s.Effect(machine);
+            }
+        }
+
         public string Explain()
         {
             StringBuilder sb = new StringBuilder();

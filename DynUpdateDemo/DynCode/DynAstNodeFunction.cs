@@ -10,6 +10,12 @@ namespace DynCode
         public string Name { get; set; }
         public DynAstNodeBlock Block { get; set; }
 
+        public void Effect(DynMachine machine)
+        {
+            machine.CreateFunction(Name);
+            Block.Effect(machine);
+        }
+
         public string Explain()
         {
             StringBuilder sb = new StringBuilder();

@@ -9,6 +9,6 @@ namespace DynCode
     {
         string Explain();
 
-
+        void Effect(DynMachine machine);
     }
 }
