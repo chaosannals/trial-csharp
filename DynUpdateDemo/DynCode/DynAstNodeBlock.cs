@@ -5,22 +5,17 @@ using System.Text;
 
 namespace DynCode
 {
-    public class DynAstNodeBlock : IDynAstNode
+    [Serializable]
+    public class DynAstNodeBlock : DynAstNode
     {
-        public List<IDynAstNode> Statements { get; set; }
+        public List<DynAstNode> Statements { get; set; }
 
-        public void Effect(DynMachine machine)
-        {
-            foreach(var s in Statements)
-            {
-                s.Effect(machine);
-            }
-        }
+        public override DynAstType Type => DynAstType.Block;
 
-        public string Explain()
+        public override string Explain()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (IDynAstNode node in Statements)
+            foreach (DynAstNode node in Statements)
             {
                 sb.Append($"    {node.Explain()}");
             }

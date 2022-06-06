@@ -1,4 +1,8 @@
-﻿def main() {
+﻿def mult(a, b) {
+	ret a * b;
+}
+
+def main() {
 	a = 1;
 	b = 2;
 	ret a + b;

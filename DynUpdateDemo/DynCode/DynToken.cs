@@ -19,7 +19,9 @@ namespace DynCode
 
         SymbolPlus, // + 
         SymbolMinus, // -
+        SymbolStar, // *
         SymbolEqual, // =
+        SymbolComma, // ,
         SymbolSemicolon, // ;
         SymbolCurlyLeft, // {
         SymbolCurlyRight, // }

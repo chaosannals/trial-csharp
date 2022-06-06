@@ -27,9 +27,9 @@ namespace DynCode
         /// <summary>
         /// statemens ::= statement+
         /// </summary>
-        public List<IDynAstNode> MatchStatements(DynToken endToken)
+        public List<DynAstNode> MatchStatements(DynToken endToken)
         {
-            var r = new List<IDynAstNode>();
+            var r = new List<DynAstNode>();
             var lexeme = PeekLexeme();
             while (lexeme.Token != endToken)
             {
@@ -44,7 +44,7 @@ namespace DynCode
         ///     expression ';'
         ///     functionDefine
         /// </summary>
-        public IDynAstNode MatchStatement()
+        public DynAstNode MatchStatement()
         {
             var lexeme = PeekLexeme();
 
@@ -125,6 +125,7 @@ namespace DynCode
         ///     operand '=' expression
         ///     operand '+' expression
         ///     operand '-' expression
+        ///     operand '*' expression
         ///     operand
         /// </summary>
         /// <exception cref="DynException"></exception>
@@ -138,9 +139,10 @@ namespace DynCode
             {
                 case DynToken.SymbolPlus:
                 case DynToken.SymbolMinus:
+                case DynToken.SymbolStar:
                 case DynToken.SymbolEqual:
                     NextLexeme();
-                    r.Operation = lexeme.Token;
+                    r.Operation = lexeme;
                     r.Right = MatchExpression();
                     break;
             }
@@ -151,9 +153,9 @@ namespace DynCode
         /// functionDefine ::= def identifier '(' ')' block
         /// </summary>
         /// <exception cref="DynException"></exception>
-        public DynAstNodeFunction MatchFunctionDefine()
+        public DynAstNodeFunctionDefine MatchFunctionDefine()
         {
-            var r = new DynAstNodeFunction();
+            var r = new DynAstNodeFunctionDefine();
 
             var defLexeme = NextLexeme();
             if (defLexeme.Token != DynToken.KeywordDef)
@@ -174,6 +176,8 @@ namespace DynCode
                 throw new DynException($"语法错误，不是左括弧( {plt}");
             }
 
+            r.Parameters = MatchFunctionParameters();
+
             var prt = NextLexeme();
             if (prt.Token != DynToken.SymbolPareRight)
             {
@@ -184,6 +188,39 @@ namespace DynCode
             return r;
         }
 
+        /// <summary>
+        /// functionParameters ::=
+        ///     ∅
+        ///     identifier (,identifier)*
+        /// </summary>
+        /// <returns></returns>
+        public List<DynLexeme> MatchFunctionParameters()
+        {
+            var lexeme = PeekLexeme();
+            var r = new List<DynLexeme>();
+
+            while (lexeme.Token != DynToken.SymbolPareRight)
+            {
+                if (lexeme.Token != DynToken.Identifier)
+                {
+                    throw new DynException($"语法错误，不是有效的函数参数定义 {lexeme}");
+                }
+                lexeme = NextLexeme();
+                r.Add(lexeme);
+                lexeme = PeekLexeme();
+                if (lexeme.Token == DynToken.SymbolComma)
+                {
+                    NextLexeme();
+                    lexeme = PeekLexeme();
+                }
+            }
+            return r;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public DynLexeme NextLexeme()
         {
             if (lexemes.Count > 0)
@@ -193,6 +230,10 @@ namespace DynCode
             return lexer.NextLexeme();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public DynLexeme PeekLexeme()
         {
             var r = NextLexeme();

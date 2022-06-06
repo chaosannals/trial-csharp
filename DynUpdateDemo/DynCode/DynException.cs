@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DynCode
 {
+    //[Serializable]
     public class DynException : Exception
     {
         public DynException(string msg) : base(msg)

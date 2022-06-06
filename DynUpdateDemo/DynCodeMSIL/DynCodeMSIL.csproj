@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{989115D4-2FEB-4FF9-A888-F88DBDFD6B0D}</ProjectGuid>
+    <ProjectGuid>{49B2E07B-F04C-4BA9-BB1E-5E83030DFAD8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DynCodeDemo</RootNamespace>
-    <AssemblyName>DynCodeDemo</AssemblyName>
+    <RootNamespace>DynCodeMSIL</RootNamespace>
+    <AssemblyName>DynCodeMSIL</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,20 +42,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DynCode\DynCode.csproj">
-      <Project>{a5e4dfcd-abf6-4252-a58a-540ecc27b3ad}</Project>
-      <Name>DynCode</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\1.dc.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\2.dc.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Compile Include="SampleOne.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

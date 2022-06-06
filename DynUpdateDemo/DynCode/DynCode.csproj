@@ -39,11 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynAstType.cs" />
     <Compile Include="DynMachine.cs" />
-    <Compile Include="IDynAstNode.cs" />
+    <Compile Include="DynAstNode.cs" />
     <Compile Include="DynAstNodeBlock.cs" />
     <Compile Include="DynAstNodeExpression.cs" />
-    <Compile Include="DynAstNodeFunction.cs" />
+    <Compile Include="DynAstNodeFunctionDefine.cs" />
     <Compile Include="DynAstNodeOperand.cs" />
     <Compile Include="DynAstNodeRoot.cs" />
     <Compile Include="DynAstNodeStatement.cs" />

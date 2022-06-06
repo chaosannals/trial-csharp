@@ -6,24 +6,14 @@ using System.Reflection.Emit;
 
 namespace DynCode
 {
-    public class DynAstNodeOperand : IDynAstNode
+    [Serializable]
+    public class DynAstNodeOperand : DynAstNode
     {
         public DynLexeme Lexeme { get; set; }
 
-        public void Effect(DynMachine machine)
-        {
-            var ilg = machine.CurrentMethodBuilder.GetILGenerator();
-            switch (Lexeme.Token)
-            {
-                case DynToken.Number:
-                    //ilg.Emit()
-                    break;
-                case DynToken.Identifier:
-                    break;
-            }
-        }
+        public override DynAstType Type => DynAstType.Operand;
 
-        public string Explain()
+        public override string Explain()
         {
             return Lexeme.ToString();
         }

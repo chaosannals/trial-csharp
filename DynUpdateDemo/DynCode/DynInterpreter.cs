@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.IO;
 
 namespace DynCode
 {
@@ -14,6 +15,7 @@ namespace DynCode
 
         public DynInterpreter(string name = "DynDomain")
         {
+            this.name = name;
             setup = new AppDomainSetup
             {
                 ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase
@@ -29,7 +31,11 @@ namespace DynCode
                     typeof(DynMachine).Assembly.FullName,
                     typeof(DynMachine).FullName
                 ) as DynMachine;
-                root.Effect(machine);
+                machine.Start(root);
+                machine.Save();
+                Console.WriteLine("save : {0}", machine.LastError);
+                // machine.Run();
+                Console.WriteLine("run : {0}", machine.LastError);
             }
             finally
             {

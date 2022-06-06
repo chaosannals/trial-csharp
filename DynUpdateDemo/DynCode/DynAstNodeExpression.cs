@@ -6,29 +6,16 @@ using System.Reflection.Emit;
 
 namespace DynCode
 {
-    public class DynAstNodeExpression : IDynAstNode
+    [Serializable]
+    public class DynAstNodeExpression : DynAstNode
     {
         public DynAstNodeOperand Left { get; set; }
-        public DynToken Operation { get; set; }
+        public DynLexeme Operation { get; set; }
         public DynAstNodeExpression Right { get; set; }
 
-        public void Effect(DynMachine machine)
-        {
-            var ilg = machine.CurrentMethodBuilder.GetILGenerator();
-            Left.Effect(machine);
-            Right.Effect(machine);
-            switch (Operation)
-            {
-                case DynToken.SymbolPlus:
-                    ilg.Emit(OpCodes.Add);
-                    break;
-                case DynToken.SymbolMinus:
-                    ilg.Emit(OpCodes.Sub);
-                    break;
-            }
-        }
+        public override DynAstType Type => DynAstType.Expression;
 
-        public string Explain()
+        public override string Explain()
         {
             return $"{Left?.Explain()} {Operation} {Right?.Explain()}";
         }

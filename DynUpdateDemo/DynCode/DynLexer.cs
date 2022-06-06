@@ -8,7 +8,7 @@ namespace DynCode
 {
     public class DynLexer
     {
-        const string SymbolsCharSet = "+-*/=;{}()[]";
+        const string SymbolsCharSet = "+-*/=,;{}()[]";
         public static readonly Dictionary<string, DynToken> Keywords = new Dictionary<string, DynToken>
         {
             { "def", DynToken.KeywordDef },
@@ -19,7 +19,9 @@ namespace DynCode
         {
             { "+", DynToken.SymbolPlus },
             { "-", DynToken.SymbolMinus },
+            { "*", DynToken.SymbolStar },
             { "=", DynToken.SymbolEqual },
+            { ",", DynToken.SymbolComma },
             { ";", DynToken.SymbolSemicolon },
             { "{", DynToken.SymbolCurlyLeft },
             { "}", DynToken.SymbolCurlyRight },

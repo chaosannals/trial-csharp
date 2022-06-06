@@ -6,26 +6,15 @@ using System.Reflection.Emit;
 
 namespace DynCode
 {
-    public class DynAstNodeStatement : IDynAstNode
+    [Serializable]
+    public class DynAstNodeStatement : DynAstNode
     {
         public bool IsReturn { get; set; } = false;
         public DynAstNodeExpression Expression { get; set; }
 
-        public void Effect(DynMachine machine)
-        {
-            ILGenerator ilg = machine.CurrentMethodBuilder.GetILGenerator();
-            if (IsReturn)
-            {
+        public override DynAstType Type => DynAstType.Statement;
 
-                ilg.Emit(OpCodes.Ret);
-            }
-            else
-            {
-
-            }
-        }
-
-        public string Explain()
+        public override string Explain()
         {
             StringBuilder sb = new StringBuilder();
             if (IsReturn)

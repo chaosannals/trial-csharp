@@ -22,7 +22,7 @@ namespace DynCodeDemo
                     DynParser parser = new DynParser(lexer);
                     var tree = parser.Parse();
                     Console.WriteLine(tree.Explain());
-                    interpreter.Interpret();
+                    interpreter.Interpret(tree);
                     //DynLexeme Lexeme;
                     //do
                     //{
