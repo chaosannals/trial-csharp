@@ -74,21 +74,40 @@ namespace DynCode
             nilg.Emit(OpCodes.Stfld, kfb);
             nilg.Emit(OpCodes.Ret);
 
-            //var addMethodBuilder = anyTypeBuilder.DefineMethod(
-            //    "add_operator",
-            //    MethodAttributes.Public | MethodAttributes.Static,
-            //    anyTypeBuilder,
-            //    new Type[] { anyTypeBuilder, anyTypeBuilder }
-            //);
-            //var ailg = addMethodBuilder.GetILGenerator();
-            //ailg.Emit(OpCodes.Ldarg_0);
-            //// ailg.Emit(OpCodes.Ldfld, kfb);
-            //ailg.Emit(OpCodes.Ldfld, nvfb);
-            //ailg.Emit(OpCodes.Ldarg_1);
-            //ailg.Emit(OpCodes.Ldfld, nvfb);
-            //ailg.Emit(OpCodes.Add);
-            //ailg.Emit(OpCodes.Newobj, numberTypeBuilder);
-            //ailg.Emit(OpCodes.Ret);
+            var addMethodBuilder = anyTypeBuilder.DefineMethod(
+                "add_operator",
+                MethodAttributes.Public | MethodAttributes.Static,
+                anyTypeBuilder,
+                new Type[] { anyTypeBuilder, anyTypeBuilder }
+            );
+            var ailg = addMethodBuilder.GetILGenerator();
+            ailg.Emit(OpCodes.Ldarg_0);
+            // ailg.Emit(OpCodes.Ldfld, kfb);
+            ailg.Emit(OpCodes.Ldfld, nvfb);
+            ailg.Emit(OpCodes.Ldarg_1);
+            ailg.Emit(OpCodes.Ldfld, nvfb);
+            ailg.Emit(OpCodes.Add);
+            ailg.Emit(OpCodes.Newobj, numberTypeBuilder);
+            ailg.Emit(OpCodes.Ret);
+
+            var toStringMethodBuilder = anyTypeBuilder.DefineMethod(
+                "ToString",
+                MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig,
+                typeof(string),
+                Type.EmptyTypes
+            );
+            var tsilg = toStringMethodBuilder.GetILGenerator();
+            tsilg.Emit(OpCodes.Ldstr, "kind: {0} ; stringValue: {1} numberValue: {2}");
+            tsilg.Emit(OpCodes.Ldarg_0);
+            tsilg.Emit(OpCodes.Ldfld, kfb);
+            tsilg.Emit(OpCodes.Ldarg_0);
+            tsilg.Emit(OpCodes.Ldfld, svfb);
+            tsilg.Emit(OpCodes.Ldarg_0);
+            tsilg.Emit(OpCodes.Ldfld, nvfb);
+            tsilg.Emit(OpCodes.Call, typeof(string).GetMethod("Format", new Type[] {
+                typeof(string), typeof(object), typeof(object),  typeof(object),
+            }));
+            tsilg.Emit(OpCodes.Ret);
 
             return anyTypeBuilder.CreateType();
         }
@@ -129,6 +148,11 @@ namespace DynCode
             {
                 var mi = mainTypeBuider.GetMethod("main");
                 var r = mi.Invoke(null, null);
+                var fi = anyType.GetField("numberValue");
+                var nr = fi.GetValue(r);
+                Console.WriteLine($"{nr}");
+                //Console.WriteLine(r.GetType().FullName);
+                //Console.WriteLine(r.ToString());
             }
             catch (DynException e)
             {
@@ -165,40 +189,41 @@ namespace DynCode
                             EmitExpression(ss.Expression, milg, methodScope, args);
                             if (ss.IsReturn)
                             {
-                                var r = milg.DeclareLocal(anyType);
-                                var nle = milg.DefineLabel();
-                                milg.Emit(OpCodes.Dup);
-                                milg.Emit(OpCodes.Isinst, typeof(int));
-                                milg.Emit(OpCodes.Ldnull);
-                                milg.Emit(OpCodes.Cgt);
-                                milg.Emit(OpCodes.Brfalse, nle);
-                                milg.Emit(OpCodes.Newobj, anyType.GetConstructor(new Type[] { typeof(int) }));
-                                milg.Emit(OpCodes.Stloc, r);
-                                milg.Emit(OpCodes.Ldloc, r);
                                 milg.Emit(OpCodes.Ret);
-                                milg.MarkLabel(nle);
+                                //var r = milg.DeclareLocal(anyType);
+                                //var nle = milg.DefineLabel();
+                                //milg.Emit(OpCodes.Dup);
+                                //milg.Emit(OpCodes.Isinst, typeof(int));
+                                //milg.Emit(OpCodes.Ldnull);
+                                //milg.Emit(OpCodes.Cgt);
+                                //milg.Emit(OpCodes.Brfalse, nle);
+                                //milg.Emit(OpCodes.Newobj, anyType.GetConstructor(new Type[] { typeof(int) }));
+                                //milg.Emit(OpCodes.Stloc, r);
+                                //milg.Emit(OpCodes.Ldloc, r);
+                                //milg.Emit(OpCodes.Ret);
+                                //milg.MarkLabel(nle);
 
-                                var sle = milg.DefineLabel();
-                                milg.Emit(OpCodes.Dup);
-                                milg.Emit(OpCodes.Isinst, typeof(string));
-                                milg.Emit(OpCodes.Ldnull);
-                                milg.Emit(OpCodes.Cgt);
-                                milg.Emit(OpCodes.Brfalse,sle);
-                                milg.Emit(OpCodes.Newobj, anyType.GetConstructor(new Type[] { typeof(string) }));
-                                milg.Emit(OpCodes.Stloc, r);
-                                milg.Emit(OpCodes.Ldloc, r);
-                                milg.Emit(OpCodes.Ret);
-                                milg.MarkLabel(sle);
+                                //var sle = milg.DefineLabel();
+                                //milg.Emit(OpCodes.Dup);
+                                //milg.Emit(OpCodes.Isinst, typeof(string));
+                                //milg.Emit(OpCodes.Ldnull);
+                                //milg.Emit(OpCodes.Cgt);
+                                //milg.Emit(OpCodes.Brfalse,sle);
+                                //milg.Emit(OpCodes.Newobj, anyType.GetConstructor(new Type[] { typeof(string) }));
+                                //milg.Emit(OpCodes.Stloc, r);
+                                //milg.Emit(OpCodes.Ldloc, r);
+                                //milg.Emit(OpCodes.Ret);
+                                //milg.MarkLabel(sle);
 
                                 //var e = milg.DeclareLocal(typeof(DynException));
                                 //milg.Emit(OpCodes.Ldstr, $"语法错误，未支持的类型。");
-                                //milg.Emit(OpCodes.Newobj);
+                                //milg.Emit(OpCodes.Newobj, typeof(DynException).GetConstructor(new Type[] { typeof(string) }));
                                 //milg.Emit(OpCodes.Stloc, e);
                                 //milg.Emit(OpCodes.Ldloc, e);
                                 //milg.ThrowException(typeof(DynException));
 
-                                milg.Emit(OpCodes.Ldnull);
-                                milg.Emit(OpCodes.Ret);
+                                //milg.Emit(OpCodes.Ldnull);
+                                //milg.Emit(OpCodes.Ret);
                             }
                             break;
                         }
@@ -257,8 +282,8 @@ namespace DynCode
                         // Right
                         EmitExpression(e.Right, ilg, scope, args);
 
-                        ilg.Emit(OpCodes.Add);
-                        //ilg.Emit(OpCodes.Call, anyType.GetMethod("add_operator"));
+                        //ilg.Emit(OpCodes.Add);
+                        ilg.Emit(OpCodes.Call, anyType.GetMethod("add_operator"));
                         break;
                     }
                 case DynToken.SymbolMinus:

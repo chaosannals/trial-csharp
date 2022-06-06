@@ -25,6 +25,11 @@ namespace DynCodeMSIL
             this.intField = intField;
         }
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
         public int Mult(int a, int b)
         {
             int c = 12324;
@@ -61,6 +66,11 @@ namespace DynCodeMSIL
         public static SampleOne operator+(SampleOne a, SampleOne b)
         {
             return new SampleOne(a.Text + b.Text, a.IntValue + b.IntValue, a.intField + b.intField);
+        }
+
+        public string TextFormat()
+        {
+            return $"aaaa{Text} ++++ {IntValue}";
         }
     }
 }

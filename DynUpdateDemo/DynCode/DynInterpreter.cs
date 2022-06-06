@@ -34,7 +34,7 @@ namespace DynCode
                 machine.Start(root);
                 machine.Save();
                 Console.WriteLine("save : {0}", machine.LastError);
-                // machine.Run();
+                machine.Run();
                 Console.WriteLine("run : {0}", machine.LastError);
             }
             finally

@@ -8,6 +8,7 @@ namespace DynCode
     //[Serializable]
     public class DynException : Exception
     {
+        public DynException(): base(){}
         public DynException(string msg) : base(msg)
         {
 
