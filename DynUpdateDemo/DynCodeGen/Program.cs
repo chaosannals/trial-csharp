@@ -1,0 +1,3 @@
+﻿using DynCodeGen;
+
+DemoGen.GenExe();

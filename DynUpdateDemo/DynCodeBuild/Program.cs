@@ -34,6 +34,7 @@ namespace DynCodeBuild
             il.Emit(OpCodes.Pop);
             il.Emit(OpCodes.Ret);
             var helloKittyClassType = typeBuilder.CreateType();
+            assemblyBuilder.SetEntryPoint(methodBuilder);
             assemblyBuilder.Save("Kitty.exe");
         }
 
