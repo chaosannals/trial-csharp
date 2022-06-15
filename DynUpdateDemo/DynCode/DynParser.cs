@@ -150,7 +150,7 @@ namespace DynCode
         }
 
         /// <summary>
-        /// functionDefine ::= def identifier '(' ')' block
+        /// functionDefine ::= def identifier '(' functionParameters ')' block
         /// </summary>
         /// <exception cref="DynException"></exception>
         public DynAstNodeFunctionDefine MatchFunctionDefine()

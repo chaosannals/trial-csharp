@@ -33,7 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynCodeMSIL", "DynCodeMSIL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynCodeBuild", "DynCodeBuild\DynCodeBuild.csproj", "{A9BEB059-3023-4E6E-9906-44A9CE3EF802}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynCodeGen", "DynCodeGen\DynCodeGen.csproj", "{11AC86DE-5BE4-4385-A8C9-5A01E59C5CE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynCodeGen", "DynCodeGen\DynCodeGen.csproj", "{11AC86DE-5BE4-4385-A8C9-5A01E59C5CE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynCodeCIL", "DynCodeCIL\DynCodeCIL.csproj", "{FA4FD7B4-C2C2-46A4-895D-E0F3473E2D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToCPP", "ToCPP\ToCPP.csproj", "{35A1AFED-80EB-47C2-993E-7AC077030EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{11AC86DE-5BE4-4385-A8C9-5A01E59C5CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11AC86DE-5BE4-4385-A8C9-5A01E59C5CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11AC86DE-5BE4-4385-A8C9-5A01E59C5CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA4FD7B4-C2C2-46A4-895D-E0F3473E2D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA4FD7B4-C2C2-46A4-895D-E0F3473E2D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA4FD7B4-C2C2-46A4-895D-E0F3473E2D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA4FD7B4-C2C2-46A4-895D-E0F3473E2D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A1AFED-80EB-47C2-993E-7AC077030EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A1AFED-80EB-47C2-993E-7AC077030EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A1AFED-80EB-47C2-993E-7AC077030EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A1AFED-80EB-47C2-993E-7AC077030EA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

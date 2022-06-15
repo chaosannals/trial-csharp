@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +72,14 @@ namespace DynCodeMSIL
         public string TextFormat()
         {
             return $"aaaa{Text} ++++ {IntValue}";
+        }
+
+        public void TextAddNumber()
+        {
+            var a = 12344.4343;
+            var b = "文本";
+            var c = b + a;
+            var d = a + b;
         }
     }
 }
