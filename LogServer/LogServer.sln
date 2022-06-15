@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogServer", "LogServer\LogServer.csproj", "{DB6C49F2-D399-4774-9D98-0C99466DF341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogServer", "LogServer\LogServer.csproj", "{DB6C49F2-D399-4774-9D98-0C99466DF341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log2Server", "Log2Server\Log2Server.csproj", "{350DAD5E-E6E3-4D5D-A6C2-BE8B108B3C83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log2Server", "Log2Server\Log2Server.csproj", "{350DAD5E-E6E3-4D5D-A6C2-BE8B108B3C83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogClient", "LogClient\LogClient.csproj", "{7DF672BF-7240-4780-A7F8-B924FBBEFF29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogClient", "LogClient\LogClient.csproj", "{7DF672BF-7240-4780-A7F8-B924FBBEFF29}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DB6C49F2-D399-4774-9D98-0C99466DF341} = {DB6C49F2-D399-4774-9D98-0C99466DF341}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log2Client", "Log2Client\Log2Client.csproj", "{FF761585-7B05-4C77-BBDD-0C56898024B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log2Client", "Log2Client\Log2Client.csproj", "{FF761585-7B05-4C77-BBDD-0C56898024B1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{350DAD5E-E6E3-4D5D-A6C2-BE8B108B3C83} = {350DAD5E-E6E3-4D5D-A6C2-BE8B108B3C83}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpServer", "HttpServer\HttpServer.csproj", "{75D9A539-9339-4B88-885C-ECF991651CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugerDbFirst", "SugerDbFirst\SugerDbFirst.csproj", "{D0E871F4-D22D-4C42-91C6-1A57E7301F00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{FF761585-7B05-4C77-BBDD-0C56898024B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF761585-7B05-4C77-BBDD-0C56898024B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF761585-7B05-4C77-BBDD-0C56898024B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D9A539-9339-4B88-885C-ECF991651CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D9A539-9339-4B88-885C-ECF991651CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D9A539-9339-4B88-885C-ECF991651CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D9A539-9339-4B88-885C-ECF991651CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
