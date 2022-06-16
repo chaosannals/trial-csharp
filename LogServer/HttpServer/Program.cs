@@ -48,11 +48,13 @@ builder.Services.AddSingleton(op =>
         };
     });
 });
+// v1
 builder.Services.AddSingleton(op => new SignManager(op.GetRequiredService<SqlSugarScope>()));
-//builder.Services.AddSingleton(op => new RecordManager(
-//    op.GetRequiredService<SqlSugarScope>(),
-//    op.GetRequiredService<ILogger<RecordManager>>()
-//));
+builder.Services.AddSingleton(op => new RecordManager(
+    op.GetRequiredService<SqlSugarScope>(),
+    op.GetRequiredService<ILogger<RecordManager>>()
+));
+
 builder.Services.AddSingleton(op => new WorkQueue(1024));
 builder.Services.AddHostedService(op =>
 {
@@ -62,6 +64,8 @@ builder.Services.AddHostedService(op =>
     );
 });
 builder.Services.AddSingleton(op => new LogRecordQueue(1024));
+
+// v2
 builder.Services.AddHostedService(op =>
 {
     return new LogRecordService(

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace HttpServer;
+namespace HttpServer.Utilities;
 
 public class SlugifyParameterTransformer : IOutboundParameterTransformer
 {

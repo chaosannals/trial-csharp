@@ -49,7 +49,6 @@ public class LogRecordService : BackgroundService
                         break;
                     }
                 }
-                // logger.LogInformation("lastWriteDown {0}", lastWriteDown);
 
                 var now = DateTime.Now;
                 var elapsed = now - lastWriteDown;
@@ -65,6 +64,16 @@ public class LogRecordService : BackgroundService
                     await db.Insertable(records)
                         .SplitTable()
                         .ExecuteReturnSnowflakeIdListAsync();
+                    //long inc = now.Ticks;
+                    //records = records.Select(i =>
+                    //{
+                    //    i.Id = inc++;
+                    //    return i;
+                    //}).ToList();
+
+                    //await db.Insertable(records)
+                    //    .SplitTable()
+                    //    .ExecuteCommandAsync();
                     watch.Stop();
                     logger.LogInformation("log write down {0} use {1}ms", records.Count, watch.Elapsed.TotalMilliseconds);
                     records.Clear();
