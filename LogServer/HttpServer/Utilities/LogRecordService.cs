@@ -27,31 +27,50 @@ public class LogRecordService : BackgroundService
         var watch = new Stopwatch();
         List<MainLogRecord> records = new List<MainLogRecord>();
         DateTime lastWriteDown = DateTime.Now;
+        int batchMaxCount = 1000;
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
-                var work = await queue.DequeueAsync(stoppingToken);
-                if (work is MainLogRecord)
+                object? item;
+                while (queue.TryDequeue(out item))
                 {
-                    records.Add((MainLogRecord)work);
+                    if (item is MainLogRecord)
+                    {
+                        records.Add((MainLogRecord)item);
+                    }
+                    else if (item is IEnumerable<MainLogRecord>)
+                    {
+                        records.AddRange((item as IEnumerable<MainLogRecord>)!);
+                    }
+                    
+                    if (records.Count > batchMaxCount)
+                    {
+                        break;
+                    }
                 }
-                else if (work is IEnumerable<MainLogRecord>)
+                // logger.LogInformation("lastWriteDown {0}", lastWriteDown);
+
+                var now = DateTime.Now;
+                var elapsed = now - lastWriteDown;
+                if (elapsed < duration)
                 {
-                    records.AddRange((work as IEnumerable<MainLogRecord>)!);
+                    await Task.Delay(duration - elapsed);
+                }
+                lastWriteDown = now;
+
+                if (records.Count > 0)
+                {
+                    watch.Restart();
+                    await db.Insertable(records)
+                        .SplitTable()
+                        .ExecuteReturnSnowflakeIdListAsync();
+                    watch.Stop();
+                    logger.LogInformation("log write down {0} use {1}ms", records.Count, watch.Elapsed.TotalMilliseconds);
+                    records.Clear();
                 }
 
-                //var now = DateTime.Now;
-                //var elapsed = now - lastWriteDown;
-                //lastWriteDown = now;
-                //if (elapsed > duration && records.Count > 0)
-                //{
-                logger.LogInformation("log write down {0}", records.Count);
-                db.Insertable(records)
-                    .SplitTable()
-                    .ExecuteReturnSnowflakeIdList();
-                records.Clear();
-                //}
+                await Task.Yield();
             }
             catch (OperationCanceledException e)
             {

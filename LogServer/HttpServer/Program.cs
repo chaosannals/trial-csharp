@@ -65,7 +65,7 @@ builder.Services.AddSingleton(op => new LogRecordQueue(1024));
 builder.Services.AddHostedService(op =>
 {
     return new LogRecordService(
-        TimeSpan.FromSeconds(5),
+        TimeSpan.FromSeconds(2),
         op.GetRequiredService<ILogger<LogRecordService>>(),
         op.GetRequiredService<LogRecordQueue>(),
         op.GetRequiredService<SqlSugarScope>()

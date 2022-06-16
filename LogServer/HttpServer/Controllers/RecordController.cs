@@ -43,8 +43,8 @@ public class RecordController : ControllerBase
         await queue.EnqueueAsync(new MainLogRecord
         {
             Content = JsonSerializer.Serialize(record.Record),
-            CreateAt = DateTime.Now.AddDays(random.NextInt64(-10, 10)),
-            //CreateAt = DateTime.Now,
+            // CreateAt = DateTime.Now.AddDays(random.NextInt64(-10, 10)),
+            CreateAt = DateTime.Now,
         });
 
         return new
@@ -80,9 +80,11 @@ public class RecordController : ControllerBase
 
         await queue.EnqueueAsync(records.Select(i =>
         {
+            // Random random = new Random();
             return new MainLogRecord
             {
                 Content = JsonSerializer.Serialize(i),
+                // CreateAt = DateTime.Now.AddDays(random.NextInt64(-10, 10)),
                 CreateAt = DateTime.Now,
             };
         }));
