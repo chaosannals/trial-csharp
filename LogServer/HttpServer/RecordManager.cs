@@ -6,7 +6,7 @@ using HttpServer.Models;
 namespace HttpServer;
 
 /// <summary>
-/// 
+/// 已废弃， 改用 HostedService
 /// </summary>
 public class RecordManager
 {
@@ -54,7 +54,10 @@ public class RecordManager
                         logger.LogInformation("write down final");
                     }
                     watch.Stop();
-                    logger.LogInformation("down: {0}ms {1}", watch.ElapsedMilliseconds, count);
+                    if (count > 0)
+                    {
+                        logger.LogInformation("down: {0}ms {1}", watch.ElapsedMilliseconds, count);
+                    }
                 }
                 catch (Exception e)
                 {

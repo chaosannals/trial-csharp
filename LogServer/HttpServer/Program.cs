@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using SqlSugar;
 using HttpServer;
 using HttpServer.Middlewares;
+using HttpServer.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,15 +49,32 @@ builder.Services.AddSingleton(op =>
     });
 });
 builder.Services.AddSingleton(op => new SignManager(op.GetRequiredService<SqlSugarScope>()));
-builder.Services.AddSingleton(op => new RecordManager(
-    op.GetRequiredService<SqlSugarScope>(),
-    op.GetRequiredService<ILogger<RecordManager>>()
-));
+//builder.Services.AddSingleton(op => new RecordManager(
+//    op.GetRequiredService<SqlSugarScope>(),
+//    op.GetRequiredService<ILogger<RecordManager>>()
+//));
+builder.Services.AddSingleton(op => new WorkQueue(1024));
+builder.Services.AddHostedService(op =>
+{
+    return new WorkService(
+        op.GetRequiredService<ILogger<WorkService>>(),
+        op.GetRequiredService<WorkQueue>()
+    );
+});
+builder.Services.AddSingleton(op => new LogRecordQueue(1024));
+builder.Services.AddHostedService(op =>
+{
+    return new LogRecordService(
+        TimeSpan.FromSeconds(5),
+        op.GetRequiredService<ILogger<LogRecordService>>(),
+        op.GetRequiredService<LogRecordQueue>(),
+        op.GetRequiredService<SqlSugarScope>()
+    );
+});
 builder.Services.AddResponseCompression(op =>
 {
     op.EnableForHttps = true;
 });
-
 
 
 var app = builder.Build();
