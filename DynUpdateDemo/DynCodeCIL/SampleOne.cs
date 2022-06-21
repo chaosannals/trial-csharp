@@ -2,6 +2,13 @@
 
 public class SampleOne
 {
+    public double IntAddDouble()
+    {
+        int a = 123;
+        double b = 123.3455;
+        return b + a;
+    }
+
     public async Task DoSomeAsync()
     {
         var a = 123;
