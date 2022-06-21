@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"  xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"  xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<Bundle Name="Wix3Bootstrapper" Version="1.0.0.0" Manufacturer="" UpgradeCode="064fd212-9b7d-43b8-8186-d0f3ff9acc1f">
+		<BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+
+		<Chain>
+			<!-- TODO: Define the list of chained packages. -->
+			<!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
+		</Chain>
+	</Bundle>
+	<Fragment>
+		<util:RegistrySearchRef Id="NETFRAMEWORK40"/>
+		<PackageGroup Id="Netfx4Full">
+			<ExePackage
+				Id="Netfx4FullExe"
+				Cache="no"
+				Compressed="yes"
+				PerMachine="yes"
+				Permanent="yes"
+				Vital="yes"
+				SourceFile="$(var.Dia)dotNetFx40_Full_x86_x64.exe"
+				InstallCommand="/q /norestart "
+				DetectCondition="NETFRAMEWORK40"
+				DownloadUrl="http://go.microsoft.com/fwlink/?LinkId=164193"/>
+		</PackageGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BootstrapperCore">
+      <HintPath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\BootstrapperCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
