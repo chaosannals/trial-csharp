@@ -6,9 +6,11 @@ namespace HttpServer.Utilities;
 public class LogRecordQueue
 {
     private readonly Channel<object> queue;
+    private readonly CancellationTokenSource tokenSource;
 
     public LogRecordQueue(int capacity)
     {
+        tokenSource = new CancellationTokenSource();
         queue = Channel.CreateBounded<object>(new BoundedChannelOptions(capacity)
         {
             FullMode = BoundedChannelFullMode.Wait,
@@ -24,9 +26,21 @@ public class LogRecordQueue
         await queue.Writer.WriteAsync(log);
     }
 
-    public async ValueTask<object> DequeueAsync(CancellationToken cancellationToken)
+    public async ValueTask<object?> DequeueAsync(CancellationToken cancellationToken)
     {
-        return await queue.Reader.ReadAsync(cancellationToken);
+        try
+        {
+            CancellationTokenSource ts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            ts.CancelAfter(TimeSpan.FromSeconds(2));
+            //CancellationTokenSource ts = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            //ts.Token.Register(() => System.Console.WriteLine("被取消了."));
+            return await queue.Reader.ReadAsync(ts.Token);
+            //return await queue.Reader.WaitToReadAsync(ts.Token);
+        }
+        catch (OperationCanceledException e)
+        {
+            return null;
+        }
     }
 
     public bool TryDequeue(out object? output)

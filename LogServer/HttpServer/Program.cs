@@ -1,10 +1,41 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using SqlSugar;
+using FreeSql;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.File;
+using IdGen.DependencyInjection;
 using HttpServer;
 using HttpServer.Middlewares;
 using HttpServer.Utilities;
 
+//Log.Logger = new LoggerConfiguration()
+//    .MinimumLevel.Information()
+//    .WriteTo.File
+//    (
+//        path: "logs/logserver-.log",
+//        rollingInterval: RollingInterval.Day,
+//        rollOnFileSizeLimit: true,
+//        fileSizeLimitBytes: 2000000,
+//        flushToDiskInterval: TimeSpan.FromSeconds(10),
+//        outputTemplate: "[{Timestamp:yy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+//        )
+//    .WriteTo.Console(restrictedToMinimumLevel:LogEventLevel.Warning)
+//    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
+//builder.Host.UseSerilog();
+
+builder.Logging.AddFile(builder.Configuration.GetSection("Logging"));
+
+builder.Services.AddSingleton(op =>
+{
+    var cs = builder.Configuration.GetConnectionString("Main");
+    return new FreeSqlBuilder()
+        .UseConnectionString(DataType.MySql, cs)
+        .UseAutoSyncStructure(true)
+        .Build();
+});
 
 // Add services to the container.
 builder.Services.AddMiniProfiler();
@@ -72,16 +103,18 @@ builder.Services.AddHostedService(op =>
         TimeSpan.FromSeconds(2),
         op.GetRequiredService<ILogger<LogRecordService>>(),
         op.GetRequiredService<LogRecordQueue>(),
-        op.GetRequiredService<SqlSugarScope>()
+        op.GetRequiredService<SqlSugarScope>(),
+        op.GetRequiredService<IFreeSql>()
     );
 });
 builder.Services.AddResponseCompression(op =>
 {
     op.EnableForHttps = true;
 });
-
+builder.Services.AddIdGen(100);
 
 var app = builder.Build();
+
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseMiniProfiler();

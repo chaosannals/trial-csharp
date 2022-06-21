@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using SqlSugar;
 using HttpServer.Attributters;
 using HttpServer.Parameters;
 using HttpServer.Models;
 using HttpServer.Utilities;
+using IdGen;
 using System.Threading.Channels;
 
 namespace HttpServer.Controllers;
@@ -16,11 +16,13 @@ public class RecordController : ControllerBase
 {
     private readonly ILogger<RecordController> logger;
     private readonly LogRecordQueue queue;
+    private readonly IIdGenerator<long> idGenerator;
 
-    public RecordController(ILogger<RecordController> logger, LogRecordQueue queue)
+    public RecordController(ILogger<RecordController> logger, LogRecordQueue queue, IIdGenerator<long> idGenerator)
     {
         this.logger = logger;
         this.queue = queue;
+        this.idGenerator = idGenerator;
     }
 
     [LogAck]
@@ -62,6 +64,7 @@ public class RecordController : ControllerBase
     [Route("many")]
     [LogAck]
     [HttpPost]
+    
     public async Task<object> LogMany([FromBody] List<object> records)
     {
         //Task.Run(() =>
@@ -83,6 +86,7 @@ public class RecordController : ControllerBase
             // Random random = new Random();
             return new MainLogRecord
             {
+                Id = idGenerator.CreateId(),
                 Content = JsonSerializer.Serialize(i),
                 // CreateAt = DateTime.Now.AddDays(random.NextInt64(-10, 10)),
                 CreateAt = DateTime.Now,
