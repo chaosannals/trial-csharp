@@ -21,7 +21,7 @@ public class LogAckMiddleware
         var la = endpoint?.Metadata.GetMetadata<LogAckAttribute>();
         if (la != null)
         {
-            logger.LogInformation("ack: {0}", endpoint!.DisplayName);
+            //logger.LogInformation("ack: {0}", endpoint!.DisplayName);
         }
         await next(ctx);
     }
