@@ -34,6 +34,8 @@ public class SignManager
             throw new SignException($"invalid account: {account}");
         }
         var token = Guid.NewGuid().ToString("N");
+        tokens[token] = app.Id;
+        return token;
     }
 
     public async Task<SignProof> Sign(string account, string signature)

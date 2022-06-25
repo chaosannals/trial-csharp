@@ -2,6 +2,15 @@
 
 public class SampleOne
 {
+    public void GODo1()
+    {
+        GenericsOne<int> a = new GenericsOne<int>();
+        a.DoSome(5678);
+
+        GenericsOne<SampleOne> b = new GenericsOne<SampleOne>();
+        b.DoSome(new SampleOne());
+    }
+
     public double IntAddDouble()
     {
         int a = 123;
