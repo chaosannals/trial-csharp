@@ -20,9 +20,11 @@ public class FunctionExpression
         return a + b / 100;
     };
 
+    public MyFunc<int, int, int> OneFC { get; set; }
+
     public FunctionExpression()
     {
-        
+        OneFC = (a,b) => new FCOne(123).Func(a,b);
     }
 
     public object MakeFunction()
