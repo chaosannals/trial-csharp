@@ -10,10 +10,10 @@ public class FLogApp
     [Column(Name = "id", IsPrimary = true, IsIdentity = true)]
     public long Id { get; set; }
 
-    [Column(Name ="account", IsNullable = false)]
+    [Column(Name ="account", StringLength = 100, IsNullable = false)]
     public string Account { get; set; } = null!;
 
-    [Column(Name ="secret", IsNullable = false)]
+    [Column(Name ="secret", StringLength = 64, IsNullable = false)]
     public string Secret { get; set; } = null!;
 
     [Column(Name = "create_at", IsNullable = false)]

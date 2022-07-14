@@ -31,10 +31,12 @@ builder.Logging.AddFile(builder.Configuration.GetSection("Logging"));
 builder.Services.AddSingleton(op =>
 {
     var cs = builder.Configuration.GetConnectionString("Main");
-    return new FreeSqlBuilder()
+    var db = new FreeSqlBuilder()
         .UseConnectionString(DataType.MySql, cs)
         .UseAutoSyncStructure(true)
         .Build();
+    SignManager.Init(db);
+    return db;
 });
 
 // Add services to the container.
@@ -80,7 +82,7 @@ builder.Services.AddSingleton(op =>
     });
 });
 // v1
-builder.Services.AddSingleton(op => new SignManager(op.GetRequiredService<SqlSugarScope>()));
+builder.Services.AddSingleton(op => new SignManager(op.GetRequiredService<IFreeSql>(), op.GetRequiredService<ILogger<SignManager>>()));
 builder.Services.AddSingleton(op => new RecordManager(
     op.GetRequiredService<SqlSugarScope>(),
     op.GetRequiredService<ILogger<RecordManager>>()
@@ -107,6 +109,14 @@ builder.Services.AddHostedService(op =>
         op.GetRequiredService<IFreeSql>()
     );
 });
+builder.Services.AddHostedService(op =>
+{
+    return new SignService(
+        op.GetRequiredService<ILogger<SignService>>(),
+        op.GetRequiredService<SignManager>()
+    );
+});
+
 builder.Services.AddResponseCompression(op =>
 {
     op.EnableForHttps = true;

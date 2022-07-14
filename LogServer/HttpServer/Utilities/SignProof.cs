@@ -1,4 +1,4 @@
-﻿namespace HttpServer;
+﻿namespace HttpServer.Utilities;
 
 public class SignProof
 {
