@@ -1,32 +1,35 @@
-﻿using LogServer;
-using Microsoft.Extensions.Configuration.Json;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using LogServer.Models;
+using LogServer.Services;
 
-var ioc = new ServiceCollection();
-var cb = new ConfigurationBuilder();
-var cnf = cb.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    .Add(new JsonConfigurationSource
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureHostConfiguration(cd =>
     {
-        Path = "appsettings.json",
-        ReloadOnChange = true,
-    }).Build();
-ioc.AddSingleton(op => cnf);
+        cd.SetBasePath(Directory.GetCurrentDirectory());
+        cd.AddEnvironmentVariables(prefix: "LOGDEMO_");
+    })
+    .ConfigureServices((hc, services) =>
+    {
+        services.AddHostedService<LogDemoTcpService>();
+        services.AddHostedService<LogDemoUdpService>();
+        services.AddDbContext<DbLsContext>(oa =>
+        {
+            var cs = hc.Configuration.GetConnectionString("Main");
+            oa.UseMySql(cs, new MySqlServerVersion(new Version(8, 0, 26)));
+        });
+    })
+    .ConfigureLogging((hc, cl) =>
+    {
+        cl.AddFile(hc.Configuration.GetSection("LoggingFile"));
+        cl.AddConsole();
+        cl.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
+    })
+    .UseConsoleLifetime()
+    .Build();
 
-ioc.AddDbContext<LogDemoServerDbContext>(opb =>
-{
-    var connetionString = cnf.GetConnectionString("Main");
-    opb.UseMySQL(connetionString);
-});
+host.Run();
 
-ioc.AddSingleton(op =>
-{
-    return new LogDemoServer();
-});
-
-
-var provider = ioc.BuildServiceProvider();
-var server = provider.GetRequiredService<LogDemoServer>();
-
-server.Serve();

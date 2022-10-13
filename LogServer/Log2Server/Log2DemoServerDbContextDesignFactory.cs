@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration;
-using LogServer.Models;
+using Log2Server.Models;
 
-namespace LogServer;
+namespace Log2Server;
 
-public class LogDemoServerDbContextDesignFactory : IDesignTimeDbContextFactory<DbLsContext>
+public class Log2DemoServerDbContextDesignFactory : IDesignTimeDbContextFactory<DbLsContext>
 {
     public DbLsContext CreateDbContext(string[] args)
     {
@@ -18,10 +18,7 @@ public class LogDemoServerDbContextDesignFactory : IDesignTimeDbContextFactory<D
                 ReloadOnChange = true,
             }).Build();
         var opb = new DbContextOptionsBuilder<DbLsContext>();
-        opb.UseMySql(
-            cnf.GetConnectionString("Main"),
-            new MySqlServerVersion(new Version(8, 0, 26))
-        );
+        opb.UseMySQL(cnf.GetConnectionString("Main"));
         return new DbLsContext(opb.Options);
     }
 }
