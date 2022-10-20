@@ -11,6 +11,6 @@ public class UdpClientService : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
+        await Task.Yield();
     }
 }

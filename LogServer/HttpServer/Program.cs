@@ -26,7 +26,9 @@ using HttpServer.Utilities;
 var builder = WebApplication.CreateBuilder(args);
 //builder.Host.UseSerilog();
 
-builder.Logging.AddFile(builder.Configuration.GetSection("Logging"));
+builder.Logging
+    .AddFile(builder.Configuration.GetSection("LoggingFile"))
+    .AddConsole();
 
 builder.Services.AddSingleton(op =>
 {
@@ -96,7 +98,7 @@ builder.Services.AddHostedService(op =>
         op.GetRequiredService<WorkQueue>()
     );
 });
-builder.Services.AddSingleton(op => new LogRecordQueue(1024));
+builder.Services.AddSingleton<LogRecordQueue>();
 
 // v2
 builder.Services.AddHostedService(op =>

@@ -16,35 +16,73 @@ public class LogDemoUdpService : IHostedService, IDisposable
     private Socket sock;
     private IPEndPoint bind;
     private ILogger<LogDemoUdpService> logger;
+    private Task? runTask;
+    private CancellationTokenSource runCts;
 
     public LogDemoUdpService(IConfiguration configuration, ILogger<LogDemoUdpService> logger)
     {
         sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         bind = new IPEndPoint(IPAddress.Any, configuration.GetValue<int>("Udp:Port"));
         this.logger = logger;
+        runCts = new CancellationTokenSource();
     }
 
     public void Dispose()
     {
-        sock?.Dispose();
+        try
+        {
+            runCts.Cancel();
+            sock?.Dispose();
+            logger.LogInformation("udp service dispose.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError("udp service dispose error: {0}", e);
+        }
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
+        runTask = RunAsync(runCts.Token);
+        if (runTask.IsCompleted)
+        {
+            await runTask;
+        }
+    }
+
+    public async Task RunAsync(CancellationToken cancellationToken)
+    {
         sock.Bind(bind);
         byte[] buffer = new byte[512];
         logger.LogInformation("udp services start.");
-        //while (true)
-        //{
-        //    EndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-        //    int pl = sock.ReceiveFrom(buffer, ref sender);
-        //    byte[] data = buffer.Take(pl).ToArray();
-        //    logger.LogInformation("receive: {0} ", data.Length);
-        //}
+
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            await Task.Yield();
+            //    EndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+            //    int pl = sock.ReceiveFrom(buffer, ref sender);
+            //    byte[] data = buffer.Take(pl).ToArray();
+            //    logger.LogInformation("receive: {0} ", data.Length);
+        }
+        logger.LogInformation("udp services end.");
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
+        if (runTask != null)
+        {
+            try
+            {
+                runCts.Cancel();
+            }
+            finally
+            {
+                await Task.WhenAny(
+                    runTask,
+                    Task.Delay(Timeout.Infinite, cancellationToken)
+                );
+            }
+        }
         logger.LogInformation("udp services end.");
     }
 }

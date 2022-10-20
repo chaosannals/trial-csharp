@@ -7,9 +7,12 @@ public class LogRecordQueue
 {
     private readonly Channel<object> queue;
     private readonly CancellationTokenSource tokenSource;
+    private ILogger<LogRecordQueue> logger;
 
-    public LogRecordQueue(int capacity)
+    public LogRecordQueue(IConfiguration configuration, ILogger<LogRecordQueue> logger)
     {
+        int capacity = configuration.GetValue<int>("LogRecordQueue:Capacity");
+        this.logger = logger;
         tokenSource = new CancellationTokenSource();
         queue = Channel.CreateBounded<object>(new BoundedChannelOptions(capacity)
         {
@@ -39,6 +42,8 @@ public class LogRecordQueue
         }
         catch (OperationCanceledException e)
         {
+            // 通过取消的方式退出，但是这种方式会让程序的退出显示得不好看，有待考虑的方式。
+            logger.LogTrace("dequeue cancel {0}", e);
             return null;
         }
     }

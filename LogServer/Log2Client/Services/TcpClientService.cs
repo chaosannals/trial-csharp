@@ -11,6 +11,6 @@ public class TcpClientService : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
+        await Task.Yield();
     }
 }

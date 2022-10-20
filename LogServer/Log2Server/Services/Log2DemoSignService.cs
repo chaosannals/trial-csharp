@@ -13,6 +13,6 @@ public class Log2DemoSignService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
+        await Task.Yield();
     }
 }

@@ -26,9 +26,16 @@ public class UdpClientService : IHostedService, IDisposable
 
     public void Dispose()
     {
-        runCts.Cancel();
-        sock.Dispose();
-        logger.LogInformation("udp client dispose.");
+        try
+        {
+            runCts.Cancel();
+            sock.Dispose();
+            logger.LogInformation("udp client dispose.");
+        }
+        catch (Exception e)
+        {
+            logger.LogError("udp client service dispose error. {0}", e);
+        }
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -52,22 +59,20 @@ public class UdpClientService : IHostedService, IDisposable
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        if (runTask is null)
+        if (runTask != null)
         {
-            return;
+            try
+            {
+                runCts.Cancel();
+            }
+            finally
+            {
+                await Task.WhenAny(
+                    runTask,
+                    Task.Delay(Timeout.Infinite, cancellationToken)
+                );
+            }
         }
-
-        try
-        {
-            runCts.Cancel();
-        }
-        finally
-        {
-            await Task.WhenAny(
-                runTask,
-                Task.Delay(Timeout.Infinite, cancellationToken)
-            );
-            logger.LogInformation("udp client stop.");
-        }
+        logger.LogInformation("udp client stop.");
     }
 }

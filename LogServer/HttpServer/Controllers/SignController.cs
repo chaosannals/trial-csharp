@@ -60,6 +60,7 @@ namespace HttpServer.Controllers
         public async Task<object> Decrypt(string key, string signature)
         {
             var token = SignManager.Decrypt(key, signature);
+            await Task.Yield();
             return new
             {
 
@@ -70,6 +71,7 @@ namespace HttpServer.Controllers
         [HttpPost]
         public async Task<object> Encrypt(string token)
         {
+            await Task.Yield();
             return new
             {
 
