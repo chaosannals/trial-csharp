@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log2Client", "Log2Client\Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpServer", "HttpServer\HttpServer.csproj", "{75D9A539-9339-4B88-885C-ECF991651CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugerDbFirst", "SugerDbFirst\SugerDbFirst.csproj", "{D0E871F4-D22D-4C42-91C6-1A57E7301F00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SugerDbFirst", "SugerDbFirst\SugerDbFirst.csproj", "{D0E871F4-D22D-4C42-91C6-1A57E7301F00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcServer", "GrpcServer\GrpcServer.csproj", "{324FB224-E624-4A3A-B325-BEA545B1250B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcClient", "GrpcClient\GrpcClient.csproj", "{DDE222CC-4130-4463-BC6B-2FB66384C598}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E871F4-D22D-4C42-91C6-1A57E7301F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324FB224-E624-4A3A-B325-BEA545B1250B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324FB224-E624-4A3A-B325-BEA545B1250B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324FB224-E624-4A3A-B325-BEA545B1250B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324FB224-E624-4A3A-B325-BEA545B1250B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE222CC-4130-4463-BC6B-2FB66384C598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE222CC-4130-4463-BC6B-2FB66384C598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE222CC-4130-4463-BC6B-2FB66384C598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE222CC-4130-4463-BC6B-2FB66384C598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
