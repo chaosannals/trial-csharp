@@ -63,7 +63,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     //options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    //options.Cookie.Name = "YourAppCookieName";
+    //options.Cookie.JobNumber = "YourAppCookieName";
     //options.Cookie.HttpOnly = true;
     //options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     //options.LoginPath = "/Identity/Account/Login";

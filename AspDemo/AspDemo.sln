@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtDemo", "JwtDemo\JwtDemo.csproj", "{C8B6F20F-3339-4A84-9DB6-B26E698966B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtDemo", "JwtDemo\JwtDemo.csproj", "{C8B6F20F-3339-4A84-9DB6-B26E698966B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityRazorDemo", "IdentityRazorDemo\IdentityRazorDemo.csproj", "{0E0BD9BC-7B0C-4372-BF66-843E99C3BF85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityRazorDemo", "IdentityRazorDemo\IdentityRazorDemo.csproj", "{0E0BD9BC-7B0C-4372-BF66-843E99C3BF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityRazorMySqlDemo", "IdentityRazorMySqlDemo\IdentityRazorMySqlDemo.csproj", "{6EC06C6F-39F6-4D4E-A88E-16EB283BD3B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityRazorMySqlDemo", "IdentityRazorMySqlDemo\IdentityRazorMySqlDemo.csproj", "{6EC06C6F-39F6-4D4E-A88E-16EB283BD3B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
