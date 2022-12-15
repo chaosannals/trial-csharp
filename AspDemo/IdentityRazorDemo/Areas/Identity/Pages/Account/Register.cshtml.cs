@@ -43,7 +43,7 @@ public class RegisterModel : PageModel
     public InputModel Input { get; set; }
 
     // Remaining API warnings ommited.
-    public string ReturnUrl { get; set; }
+    public string? ReturnUrl { get; set; }
 
     public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
