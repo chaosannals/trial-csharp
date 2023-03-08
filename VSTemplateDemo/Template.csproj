@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<PackageType>Template</PackageType>
+		<PackageVersion>1.0.0</PackageVersion>
+		<PackageId>VSTemplateDemo.Template</PackageId>
+		<Title>Demo Component Template</Title>
+		<Authors>ChaosAnnals</Authors>
+		<Description>A VS Template Demo</Description>
+		<PackageTags>Demo;Template</PackageTags>
+		<TargetFramework>net7.0</TargetFramework>
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ContentTargetFolders>content</ContentTargetFolders>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="VSTemplateDemo\**" />
+		<Content Include="VSTemplateDemo\**" Exclude="VSTemplateDemo\**\bin\**;VSTemplateDemo\**\obj\**;VSTemplateDemo\**\.vs\**" />
+	</ItemGroup>
+</Project>

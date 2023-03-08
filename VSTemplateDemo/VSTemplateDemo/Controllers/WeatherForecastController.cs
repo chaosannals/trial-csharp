@@ -8,7 +8,21 @@ namespace VSTemplateDemo.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "VSTemplateDemo",
+            "REPLACE_HOLD",
+#if SYMBOL_IS_MICRO
+            "SYMBOL_IS_MICRO", // 这个是通过 模板参数添加的
+#endif
+            "Freezing",
+            "Bracing",
+            "Chilly",
+            "Cool",
+            "Mild",
+            "Warm",
+            "Balmy",
+            "Hot",
+            "Sweltering",
+            "Scorching",
     };
 
         private readonly ILogger<WeatherForecastController> _logger;

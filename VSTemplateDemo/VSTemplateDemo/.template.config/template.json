@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "ChaosAnnals",
+  "classifications": [
+    "Asp",
+    "MySQL"
+  ],
+  "identity": "TrialCSharp.VSTemplateDemo",
+  "name": "TrialCSharp VSTemplateDemo(ASP)",
+  "shortName": "tcs-vst-asp",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "VSTemplateDemo",
+  "preferNameDirectory": false,
+  "primaryOutputs": [
+    {
+      "path": "VSTemplateDemo.sln"
+    }
+  ],
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [
+        ".template.config/**",
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/Properties/**",
+        "**/wwwroot/node_modules/**",
+        "**/wwwroot/dist/**",
+        "**/wwwroot/sourceMaps/**"
+      ]
+    },
+    {
+      "modifiers": [
+        {
+          "condition": "(!README)",
+          "exclude": [
+            "README.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "README": {
+      "displayName": "添加 README.md 文件",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "提供 README.md 文件"
+    },
+    "REPLACE_DEMO": {
+      "type": "parameter",
+      "displayName": "替换文件",
+      "defaultValue": "has charset bug, ",
+      "replaces": "REPLACE_HOLD",
+      "description": "替换指定文本，有字符集 BUG ，中文会有问题"
+    },
+    "SYMBOL_IS_MICRO": {
+      "type": "parameter",
+      "displayName": "定义一个宏",
+      "description": "这个勾选了等于有了该宏，可以用 #if 判定",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "CHOICE_DEMO": {
+      "type": "parameter",
+      "datatype": "choice",
+      "displayName": "下拉框示例",
+      "allowMultipleValues": true,
+      "choices": [
+        {
+          "choice": "选项1",
+          "description": "选项1描述。"
+        },
+        {
+          "choice": "选项2",
+          "description": "选项2描述。"
+        },
+        {
+          "choice": "选项3",
+          "description": "选项3描述。"
+        }
+      ],
+      "defaultValue": "选项1|选项2",
+      "description": "下拉选项，"
+    }
+  }
+}
