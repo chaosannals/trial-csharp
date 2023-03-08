@@ -1,6 +1,8 @@
 ﻿# Log2Server
 
 ```bash
+# 使用了 MySql.EntityFrameworkCore 5.0.17，Migration 有字段注释，生成表时注释没了。
+
 # 需要打开 Nuget 程序包管理控制台
 # CodeFirst 更新数据库
 Update-Database
