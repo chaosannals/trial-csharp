@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIDDemo", "HIDDemo\HIDDemo.csproj", "{D4D9061E-87F1-4DF9-9E80-F6D8114BC11C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4D9061E-87F1-4DF9-9E80-F6D8114BC11C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D9061E-87F1-4DF9-9E80-F6D8114BC11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D9061E-87F1-4DF9-9E80-F6D8114BC11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D9061E-87F1-4DF9-9E80-F6D8114BC11C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCEE95FB-F1C6-4674-AF9D-AFB85A5FEF86}
+	EndGlobalSection
+EndGlobal
