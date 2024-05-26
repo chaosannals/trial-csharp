@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace HIDDemo;
 
+public enum HID_RETURN
+{
+    SUCCESS = 0,
+    NO_DEVICE_CONECTED,
+    DEVICE_NOT_FIND,
+    DEVICE_OPENED,
+    WRITE_FAILD,
+    READ_FAILD
+
+}
+
 public static class Hid
 {
 

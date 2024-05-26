@@ -59,11 +59,52 @@ List<string> GetHidDeviceList()
             }
             Console.WriteLine();
         }
+        SetupApi.DiDestroyDeviceInfoList(hidInfoSet);
     }
+
 
     return result;
 }
 
+
+HID_RETURN OpenDevice(UInt16 vId, UInt16 pId, string serial)
+{
+    var deviceList = GetHidDeviceList();
+    if (deviceList.Count == 0)
+    {
+        return HID_RETURN.NO_DEVICE_CONECTED;
+    }
+
+    // TODO 
+    for (int i = 0; i < deviceList.Count; i++)
+    {
+
+    }
+
+    return HID_RETURN.SUCCESS;
+}
+
 Console.WriteLine("START");
-GetHidDeviceList();
+var devicePaths = GetHidDeviceList();
+var deviceText = Console.ReadLine();
+int deviceIndex;
+if (int.TryParse(deviceText, out deviceIndex))
+{
+    if (deviceIndex >= devicePaths.Count)
+    {
+        Console.WriteLine("Index out of range. ");
+    }
+    else
+    {
+        var device = devicePaths[deviceIndex];
+        Console.WriteLine("SELECT: ");
+        Console.WriteLine(device);
+
+    }
+}
+else
+{
+    Console.WriteLine("LEAVE. ");
+}
+
 Console.ReadKey();

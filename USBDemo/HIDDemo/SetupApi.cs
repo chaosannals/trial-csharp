@@ -27,14 +27,14 @@ public struct SP_DEVICE_INTERFACE_DATA_64
 public struct SP_DEVICE_INTERFACE_DETAIL_DATA_32
 {
     public int cbSize;
-    public short devicePath;
+    public short devicePath; // 原 C 结构是一个占位的数组，把这个结构套上后这个字段就是字符串数组。因为对齐 sizeof 是 6，故 C# 下用这个占位，它不是 short
 }
 
 [StructLayout(LayoutKind.Sequential, Pack = 2)]
 public struct SP_DEVICE_INTERFACE_DETAIL_DATA_64
 {
     public int cbSize;
-    public int devicePath;
+    public int devicePath; // 原 C 结构是一个占位的数组，把这个结构套上后这个字段就是字符串数组。因为对齐 sizeof 是 8，故 C# 下用这个占位，它不是 int
 }
 
 [StructLayout(LayoutKind.Sequential)]
@@ -60,8 +60,9 @@ public static class SetupApi
     [DllImport("setupapi.dll", EntryPoint = "SetupDiGetClassDevsW", SetLastError = true)]
     public static extern IntPtr DiGetClassDevs(ref Guid hidGuid, IntPtr enumerator, IntPtr hwndParent, DIGCF flags);
 
-    [DllImport("setupapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    public static extern bool SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
+    [DllImport("setupapi.dll", EntryPoint = "SetupDiDestroyDeviceInfoList", CharSet = CharSet.Unicode, SetLastError = true)]
+    public static extern bool DiDestroyDeviceInfoList(IntPtr deviceInfoSet);
+
 
     [DllImport("setupapi.dll", EntryPoint = "SetupDiEnumDeviceInterfaces", CharSet = CharSet.Unicode, SetLastError = true)]
     public static extern bool DiEnumDeviceInterfaces64(
